@@ -17,4 +17,4 @@ i jak tam idzie coś?
 
 tak se
 
-no to chujnia
+no to bardzo dobrze 
