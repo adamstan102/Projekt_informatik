@@ -91,24 +91,3 @@ class Transformacje:
   
 
 
-    def xyz2flh(self,X, Y, Z):
-        P = sqrt(X**2 + Y**2)
-        f = np.arctan(Z/(P*(1 - self.ecc2)))
-        
-        while True:
-            N = self.a/np.sqrt(1-self.ecc2*(np.sin(f))**2)
-            h = P / cos(f) - N
-            fp = f
-            f = np.arctan(Z/(P* (1 - self.ecc2 * N / (N + h))))
-            if abs(fp - f) < (0.000001/206265):
-                break
-        
-        l = np.arctan2(Y, X)
-        return(f, l, h)  
-
-
-    def XYZ2neu(dX,f,l):
-        R = np.array([[-sin(f) * cos(l), -sin(l), cos(f) * cos(l)],
-                      [-sin(f) * sin(l), cos(l), cos(f) * sin(l)],
-                      [cos(f), 0, sin(f)]])
-        return(R.T @ dX)
