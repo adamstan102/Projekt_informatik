@@ -26,3 +26,4 @@ import argparse
         self.ecc = sqrt(2 * self.flat - self.flat ** 2) 
         self.ecc2 = (2 * self.flat - self.flat ** 2) 
         
+        
