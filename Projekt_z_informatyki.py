@@ -10,3 +10,6 @@ aaa
 assaas
 nic nie pisz bo nie wolmo
 nie ładnie tak
+halo halo!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+i jak tam idzie coś?
