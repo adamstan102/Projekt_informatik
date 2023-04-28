@@ -16,3 +16,5 @@ i jak tam idzie coś?
 
 
 tak se
+
+no to chujnia
