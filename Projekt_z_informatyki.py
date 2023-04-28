@@ -8,7 +8,7 @@ Created on Fri Apr 28 14:31:01 2023
 from math import sin, cos, sqrt, atan, atan2, degrees, radians, pi, tan
 import numpy as np
 from numpy import rad2deg, deg2rad, floor, array, append, linalg, dot, arccos
-import argparse
+
 
 class Transformacje:
     def __init__(self, model: str = "wgs84"):
@@ -31,7 +31,9 @@ class Transformacje:
     def dms2deg(self, dms):
         d = dms[0]; m = dms[1]; s = dms[2]
         decimal_degree = d+m/60+s/3600
+        
         return (decimal_degree)
+    
     
     def deg2dms(self, decimal_degree):
         decimal_degree = decimal_degree / 3600
@@ -43,7 +45,9 @@ class Transformacje:
         sek = (decimal_degree - st - m/60)*3600
         np.append(dms, sek)
         print(dms)
-        return (dms) 
+        
+        return (dms)
+    
 
     def xyz2plh(self, X, Y, Z, output = 'dec_degree'):
         r   = sqrt(X**2 + Y**2)   
@@ -62,6 +66,7 @@ class Transformacje:
         elif output == "dms":
             phi = self.deg2dms(degrees(phi))
             lam = self.deg2dms(degrees(lam))
+            
             return f"{phi[0]:02d}:{phi[1]:02d}:{phi[2]:.2f}", f"{lam[0]:02d}:{lam[1]:02d}:{lam[2]:.2f}", f"{h:.3f}"
         else:
             raise NotImplementedError(f"{output} - output format not defined")
@@ -69,7 +74,9 @@ class Transformacje:
     
     def Np(self, f):
         N = self.a / sqrt(1-self.ecc2*(sin(f)**2))
+        
         return(N)
+        
         
     def flh2XYZ(self, f,l,h):
         N = self.Np(f)
@@ -79,6 +86,7 @@ class Transformacje:
     
         return(X,Y,Z)
 
+    
     def sigma(self, f):
 
         A0 = 1-(self.ecc2/4)-(3/64)*(self.ecc2**2)-(5/256)*(self.ecc2**3);
@@ -90,4 +98,18 @@ class Transformacje:
         return(si)
   
 
+
+    def xyz2flh(self,X, Y, Z):
+        P = sqrt(X**2 + Y**2)
+        f = np.arctan(Z/(P*(1 - self.ecc2)))
+        while True:
+            N = self.a/np.sqrt(1-self.ecc2*(np.sin(f))**2)
+            h = P / cos(f) - N
+            fp = f
+            f = np.arctan(Z/(P* (1 - self.ecc2 * N / (N + h))))
+            if abs(fp - f) < (0.000001/206265):
+                break
+        l = np.arctan2(Y, X)
+        
+        return(f, l, h)  
 
