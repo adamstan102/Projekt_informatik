@@ -13,3 +13,6 @@ nie ładnie tak
 halo halo!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 i jak tam idzie coś?
+
+
+tak se
