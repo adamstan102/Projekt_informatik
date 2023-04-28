@@ -19,4 +19,10 @@ import argparse
             self.b = 6356752.31414036
         elif model == "Krasowski":
             self.a = 6378245.0
-            self.b = 6356863.01877
+            self.b = 6356863.01877      
+        else:
+            raise NotImplementedError(f"{model} Nie implementowany Model")
+        self.flat = (self.a - self.b) / self.a
+        self.ecc = sqrt(2 * self.flat - self.flat ** 2) 
+        self.ecc2 = (2 * self.flat - self.flat ** 2) 
+        
