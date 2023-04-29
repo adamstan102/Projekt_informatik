@@ -1,2 +1,15 @@
 import numpy as np
 from Projekt import *
+
+
+
+
+
+
+plik = 'wsp_inp.txt'
+
+tablica = np.genfromtxt(plik, delimiter = ',', skip_header = 4)
+
+w, r = np.shape(tablica)
+
+wynik = np.zeros((w,10))
