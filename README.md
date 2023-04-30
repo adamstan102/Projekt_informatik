@@ -9,7 +9,8 @@ BL -> XY1992
 XYZ -> XY1992                                                                                                                                               
 XYZ -> XY2000                                                                                                                                                       
 
-Wymagania:                                                                                                                                                  
+Wymagania:                                                                                                                                                   
+-Program stworzony dla Windowsa 10 i 11                                                                                                                          
 -System operacyjny python 3.7                                                                                                                                   
 -math                                                                                                                                                          
 -numpy                                                                                                                                                          
