@@ -113,4 +113,55 @@ class Transformacje:
         l = np.arctan2(Y, X)
         
         return(f, l, h)  
+    
+     def fl2pl1992(self,f,l,l0=radians(19), m0 = 0.9993):
+        b2 = self.a**2*(1 - self.ecc2)
+        ep2 = (self.a**2 - b2)/b2
+        dl = l - l0
+        t = tan(f)
+        n2 = ep2 * cos(f)**2
+        N = self.a/np.sqrt(1-self.ecc2*(np.sin(f))**2)
+        sigm = self.sigma(f)
+        xgk = sigm + (dl**2/2) * N * sin(f)*cos(f)*(1 + (dl**2/12)*cos(f)**2*(5-t**2+9*n2+4*n2**2)+ ((dl**4)/360)*cos(f)**4*(61 - 58*t**2 + t**4 + 270*n2 - 330*n2*t**2))
+        ygk = dl*N*cos(f)*(1+(dl**2/6)*cos(f)**2*(1 - t**2 + n2) + (dl**4/120)*cos(f)**4*(5 - 18*t**2 + t**4 + 14*n2 - 58*n2*t**2))
+        x92 = xgk * m0 - 5300000
+        y92 = ygk * m0 + 500000
+        return x92,y92
+    
+    
+     def fl2pl2000(self,f,l,m0= 0.999923):
+        lama0=0 
+        strefa = 0
+        if l >np.deg2rad(13.5) and l < np.deg2rad(16.5):
+            strefa = 5
+            lama0 = np.deg2rad(15)
+        elif l >np.deg2rad(16.5) and l < np.deg2rad(19.5):
+            strefa = 6
+            lama0 = np.deg2rad(18)
+        elif l >np.deg2rad(19.5) and l < np.deg2rad(22.5):
+            strefa =7
+            lama0 = np.deg2rad(21)
+        elif l >np.deg2rad(22.5) and l < np.deg2rad(25.5):
+            strefa = 8
+            lama0 = np.deg2rad(24)
+        b2 = self.a**2*(1 - self.ecc2)
+        ep2 = (self.a**2 - b2)/b2
+        dl = l - lama0
+        t = tan(f)
+        n2 = ep2 * cos(f)**2
+        N = self.a/np.sqrt(1-self.ecc2*(np.sin(f))**2)
+        sigm = self.sigma(f)
+        xgk = sigm + (dl**2/2) * N * sin(f)*cos(f)*(1 + (dl**2/12)*cos(f)**2*(5-t**2+9*n2+4*n2**2)+ ((dl**4)/360)*cos(f)**4*(61 - 58*t**2 + t**4 + 270*n2 - 330*n2*t**2))
+        ygk = dl*N*cos(f)*(1+(dl**2/6)*cos(f)**2*(1 - t**2 + n2) + (dl**4/120)*cos(f)**4*(5 - 18*t**2 + t**4 + 14*n2 - 58*n2*t**2))
+        x2000 = xgk * m0
+        y2000 = ygk * m0 + strefa * 1000000 + 500000
+        return x2000,y2000
+    
+    
+     def XYZ2neu(dX,f,l):
+            R = np.array([[-sin(f) * cos(l), -sin(l), cos(f) * cos(l)],
+                          [-sin(f) * sin(l), cos(l), cos(f) * sin(l)],
+                          [cos(f), 0, sin(f)]])
+            return(R.T @ dX)
+    
 
