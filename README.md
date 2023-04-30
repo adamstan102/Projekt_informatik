@@ -1,19 +1,20 @@
 # Projekt_informatik
 Program jest napisany w języku python i umożliwia konwersje współrzędnych. Skrypt działa na elipsoidachgrs80 i wgs84.Zastosowane są transformacje:
 
-XYZ -> BLH
-BLH -> XYZ
-XYZ -> NEUp
-BL -> XY2000
-BL -> XY1992
-XYZ -> XY1992
-XYZ -> XY2000
-Wymagania:
--System operacyjny python 3.7
--math
--numpy
--biblioteka argparse
--Wywołania z pliku main.py
+XYZ -> BLH                                                                                                                                        
+BLH -> XYZ                                                                                                                                          
+XYZ -> NEU                                                                                                                                          
+BL -> XY2000                                                                                                                                            
+BL -> XY1992                                                                                                                                                    
+XYZ -> XY1992                                                                                                                                               
+XYZ -> XY2000                                                                                                                                                       
+
+Wymagania:                                                                                                                                                  
+-System operacyjny python 3.7                                                                                                                                   
+-math                                                                                                                                                          
+-numpy                                                                                                                                                          
+-biblioteka argparse                                                                                                                                            
+-Wywołania z pliku main.py                                                                          
 
 Program obsługuje pliki txt, gdzie kolejna linia współrzędnych oddzielona jest przecinkiem. Przykład:
 
@@ -25,9 +26,9 @@ Program obsługuje pliki txt, gdzie kolejna linia współrzędnych oddzielona je
 
 Wywołania zwracją pliki w takim samym formacie. Przykładowe wywołanie:
 
-wczyt_plik.py -i wsp_inp.txt -o wyniki.txt -t xyz_to_blh
+ wczyt_plik.py -i wsp_inp.txt -o wyniki.txt -t xyz_to_blh
 
-Wady programu
+Wady programu:                                                            
 Dane są z minimalnym, ale niezauważalnym błędem
 
 
