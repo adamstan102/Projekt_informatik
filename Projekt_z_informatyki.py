@@ -18,8 +18,8 @@ import argparse
 class Transformacje:
     def __init__(self, model: str = "wgs84"):
         if model == "wgs84":
-            self.a = 6378137.0 # semimajor_axis
-            self.b = 6356752.31424518 # semiminor_axis
+            self.a = 6378137.0 
+            self.b = 6356752.31424518 
         elif model == "grs80":
             self.a = 6378137.0
             self.b = 6356752.31414036
@@ -52,16 +52,10 @@ class Transformacje:
         print(dms)
         return (dms)
 
-# Wspolrzedne geocentryczne XYZ --> BLH (phi, lamba, h= wysokosc)
 
     def xyz2plh(self, X, Y, Z, output = 'dec_degree'):
-        """
-        Algorytm Hirvonena - algorytm transformacji współrzędnych ortokartezjańskich (x, y, z)
-        na współrzędne geodezyjne długość szerokość i wysokośc elipsoidalna (phi, lam, h). Jest to proces iteracyjny. 
-        W wyniku 3-4-krotneej iteracji wyznaczenia wsp. phi można przeliczyć współrzędne z dokładnoscią ok 1 cm.     
-        """
-        r   = sqrt(X**2 + Y**2)           # promień
-        phi_prev = atan(Z / (r * (1 - self.ecc2)))    # pierwsze przybliilizenie
+        r   = sqrt(X**2 + Y**2) 
+        phi_prev = atan(Z / (r * (1 - self.ecc2)))    
         phi = 0
         while abs(phi_prev - phi) > 0.000001/206265:    
             phi_prev = phi
@@ -83,13 +77,11 @@ class Transformacje:
 
 
 
-# Definicja N
     
     def Np(self, f):
         N = self.a / sqrt(1-self.ecc2*(sin(f)**2))
         return(N)
-     
-# Phi, lam, h --> XYZ
+
         
     def flh2XYZ(self, f,l,h):
         N = self.Np(f)
@@ -99,7 +91,7 @@ class Transformacje:
     
         return(X,Y,Z)
 
-# Definicja sigmy
+
 
     def sigma(self, f):
 
@@ -127,7 +119,7 @@ class Transformacje:
         l = np.arctan2(Y, X)
         return(f, l, h)  
     
-    #zamiana na wspolrzedne 1992  
+
     
     def fl2pl1992(self,f,l,l0=radians(19), m0 = 0.9993):
         b2 = self.a**2*(1 - self.ecc2)
@@ -143,7 +135,7 @@ class Transformacje:
         y92 = ygk * m0 + 500000
         return x92,y92
     
-#zamiana na wspolrzedne 2000
+
 
     def fl2pl2000(self,f,l,m0= 0.999923):
         lama0=0 
@@ -173,9 +165,7 @@ class Transformacje:
         y2000 = ygk * m0 + strefa * 1000000 + 500000
         return x2000,y2000
 
-#zamiana na wspolrzedne 1992
 
-   
            
 
     def XYZ2neu(dX,f,l):
