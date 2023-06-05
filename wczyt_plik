@@ -63,12 +63,12 @@ with open(args.input, 'r') as f_in:
                     f_out.write(f'{n} {e} {u}\n')
             elif args.type == 'bl_to_2000':
                     phi, lam, h = line.split()
-                    phi, lam, h = p.fl2pl2000(float(phi), float(lam), float(h))
-                    f_out.write(f'{phi} {lam} {h}\n')
+                    x, y, z = p.fl2pl2000(float(phi), float(lam), float(h))
+                    f_out.write(f'{x} {y} {z}\n')
             elif args.type == 'bl_to_1992':
                     phi, lam, h = line.split()
-                    phi, lam, h = p.fl2pl1992(float(phi), float(lam), float(h))
-                    f_out.write(f'{phi} {lam} {h}\n')
+                    x, y, z = p.fl2pl1992(float(phi), float(lam), float(h))
+                    f_out.write(f'{x} {y} {z}\n')
 
 
 np.savetxt('wsp_out.txt', wynik, delimiter = ',', fmt = ['%10.7f', '%10.7f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f'], 
