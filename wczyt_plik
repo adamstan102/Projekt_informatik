@@ -37,11 +37,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Transform coordinates')
     parser.add_argument('-i', '--input', required=True, help='Input file path')
     parser.add_argument('-o', '--output', required=True, help='Output file path')
+    parser.add_argument('-el', '--elipsoida', required=True,choices=['wgs84', 'grs80', 'Krasowski'], help='Typ elipsoidy')
     parser.add_argument('-t', '--type', required=True, choices=['xyz_to_blh', 'blh_to_xyz', 'xyz_to_neup', 'bl_to_2000', 'bl_to_1992'], help='Transformation type')
     parser.add_argument('-p', '--parameters', nargs='+', help='Transformation parameters')
 
     args = parser.parse_args()
-
+    
+    
+    elipsoidy = {'WGS84':[6378137.000, 0.00669438002290], 'GRS80':[6378137.000, 0.00669438002290], 'Krasowski':[6378245.000, 0.00669342162296]}
     p = Transformacje()
 
 with open(args.input, 'r') as f_in:
