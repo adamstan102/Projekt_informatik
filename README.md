@@ -27,7 +27,7 @@ Program obsługuje pliki txt, gdzie kolejna linia współrzędnych oddzielona je
 
 Wywołania zwracją pliki w takim samym formacie. Przykładowe wywołanie:
 
- wczyt_plik.py -i wsp_inp.txt -o wsp_out.txt -t xyz_to_blh
+ wczyt_plik.py -i wsp_inp.txt -o wsp_out.txt -el grs80 -t xyz_to_blh
 
 Wady programu:                                                            
 Dane są z minimalnym, ale niezauważalnym błędem
