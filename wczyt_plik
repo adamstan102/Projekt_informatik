@@ -47,6 +47,12 @@ if __name__ == "__main__":
     elipsoidy = {'WGS84':[6378137.000, 0.00669438002290], 'GRS80':[6378137.000, 0.00669438002290], 'Krasowski':[6378245.000, 0.00669342162296]}
     p = Transformacje()
 
+
+np.savetxt('wsp_out.txt', wynik, delimiter = ',', fmt = ['%10.7f', '%10.7f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f'], 
+           header = 'Adam Stankiewicz i Wojciech Golba\n Wydział Geodezji i Kartografii\n Zamiana współrzędnych geodezyjnych')
+
+
+
 with open(args.input, 'r') as f_in:
     with open(args.output, 'w') as f_out:
         for line in f_in:
@@ -74,5 +80,3 @@ with open(args.input, 'r') as f_in:
                     f_out.write(f'{x} {y} {z}\n')
 
 
-np.savetxt('wsp_out.txt', wynik, delimiter = ',', fmt = ['%10.7f', '%10.7f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f'], 
-           header = 'Adam Stankiewicz i Wojciech Golba\n Wydział Geodezji i Kartografii\n Zamiana współrzędnych geodezyjnych')
