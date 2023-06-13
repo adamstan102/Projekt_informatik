@@ -31,7 +31,6 @@ for wiersz in tablica:
      wynik[i, 8] = x1992
      wynik[i, 9] = y1992           
      i+=1
-print(wynik)
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Transform coordinates')
@@ -43,7 +42,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     
-    
+
     elipsoidy = {'WGS84':[6378137.000, 0.00669438002290], 'GRS80':[6378137.000, 0.00669438002290], 'Krasowski':[6378245.000, 0.00669342162296]}
     p = Transformacje()
 
