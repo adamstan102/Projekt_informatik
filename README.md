@@ -1,13 +1,13 @@
 # Projekt_informatik
 Program jest napisany w języku python i umożliwia konwersje współrzędnych. Skrypt działa na elipsoidachgrs80 i wgs84.Zastosowane są transformacje:
 
-XYZ -> BLH                                                                                                                                        
-BLH -> XYZ                                                                                                                                          
-XYZ -> NEU                                                                                                                                          
-BL -> XY2000                                                                                                                                            
-BL -> XY1992                                                                                                                                                  
-XYZ -> XY1992                                                                                                                                               
-XYZ -> XY2000                                                                                                                                                       
+- XYZ -> BLH                                                                                                                                        
+- BLH -> XYZ                                                                                                                                          
+- XYZ -> NEU                                                                                                                                          
+- BL -> XY2000                                                                                                                                            
+- BL -> XY1992                                                                                                                                                
+- XYZ -> XY1992                                                                                                                                               
+- XYZ -> XY2000                                                                                                                                                       
 
 # Wymagania:                                                                                                                                                   
 - Program stworzony dla Windowsa 10 i 11                                                                                                                          
