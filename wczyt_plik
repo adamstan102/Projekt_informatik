@@ -1,5 +1,5 @@
 import numpy as np
-from Projekt import *
+from Projekt_z_informatyki import *
 
 p = Transformacje(model = 'wgs84')
 
