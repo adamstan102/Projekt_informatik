@@ -25,7 +25,6 @@ i= 0
 
 for wiersz in tablica:
      f, l, h = p.xyz2plh(wiersz[0], wiersz[1], wiersz[2])
-    # x, y, z = p.flh2XYZ(f, l, h)
      x, y, z = wiersz[0], wiersz[1], wiersz[2]
      x2000, y2000 = p.fl2pl2000(f,l,m0= 0.999923)
      x1992, y1992 = p.fl2pl1992(f,l,l0=radians(19), m0 = 0.9993)
