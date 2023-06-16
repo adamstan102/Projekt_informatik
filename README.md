@@ -77,5 +77,5 @@ python wczyt_plik.py -i wsp_inp.txt -o wsp_out.txt -el grs80 -t xyz_to_blh
 
 Wady programu:                                                            
 Nie wiem czemu, ale dane z BLH na XYZ są źle obliczane przez program. Reszta wyników jest oparta na tych wynikach XYZ przez co dalsze wyniki także są nieprawidłowe, jednak gdyby funkcje nie brały złych wartości, tylko na przykład takie jakie poda użytkowanik to reszta funkcji oblicza poprawnie.
-Podczas wykorzystywania wywoływania transformacji "xyz_to_blh", plik tekstowy wypisuje także inne transformacje: "blh_to_xyz", "BL_to_XY2000", "BL_to_XY1992". 
+Podczas wykorzystywania wywoływania transformacji "xyz_to_blh", plik tekstowy wypisuje także inne transformacje: "blh_to_xyz", "BL_to_XY2000", "BL_to_XY1992". Plik oblicza współrzędne tylko dla 8 punktów z "wsp_inp.txt".
 
