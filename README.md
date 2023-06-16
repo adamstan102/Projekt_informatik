@@ -28,6 +28,19 @@ Program jest napisany w języku python i umożliwia konwersje współrzędnych. 
 
 # Program obsługuje pliki txt, gdzie kolejna linia współrzędnych oddzielona jest przecinkiem. Przykład:
 
+
+Nazwy wyników w "wsp_out.txt" jedna po drugiej:
+- Kolumna 1: Phi (B)
+- Kolumna 2:Lambda (L)
+- Kolumna 3: Wysokość (H)
+- Kolumna 4: Wartość X z obliczonych BLH
+- Kolumna 5: Wartość Y z obliczonych BLH
+- Kolumna 6: Wartość Z z obliczonych BLH
+- Kolumna 7: Wartość X2000 z obliczonych BLH
+- Kolumna 8: Wartość Y2000 z obliczonych BLH
+- Kolumna 9: Wartość X1992 z obliczonych BLH
+- Kolumna 10: Wartość Y1992 z obliczonych BLH
+
 52.0972722,21.0315333,   141.399,947413.418,-1352137.431,6140234.316,481634032430.556,15027939082.113,437788127780.763,13935385475.422
 52.0972722,21.0315331,   141.400,947412.960,-1352137.320,6140234.411,481633670612.755,15027908118.825,437787798717.301,13935356874.680
 52.0972721,21.0315330,   141.403,947412.561,-1352137.293,6140234.482,481633405928.928,15027885921.696,437787557891.252,13935336368.116
