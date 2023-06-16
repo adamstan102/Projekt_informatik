@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr 27 19:14:41 2023
+
+@author: User
+"""
+
 import numpy as np
 from Projekt_z_informatyki import *
 
@@ -5,8 +12,10 @@ p = Transformacje(model = 'wgs84')
 
 
 plik = 'wsp_inp.txt'
-
+#odczyt z pliku
 tablica = np.genfromtxt(plik, delimiter = ',', skip_header = 4)
+
+
 
 w, r = np.shape(tablica)
 
@@ -16,9 +25,11 @@ i= 0
 
 for wiersz in tablica:
      f, l, h = p.xyz2plh(wiersz[0], wiersz[1], wiersz[2])
-     x, y, z = p.flh2XYZ(f, l, h)
+    # x, y, z = p.flh2XYZ(f, l, h)
+     x, y, z = wiersz[0], wiersz[1], wiersz[2]
      x2000, y2000 = p.fl2pl2000(f,l,m0= 0.999923)
      x1992, y1992 = p.fl2pl1992(f,l,l0=radians(19), m0 = 0.9993)
+     
      
      wynik[i, 0] = f
      wynik[i, 1] = l
@@ -31,36 +42,30 @@ for wiersz in tablica:
      wynik[i, 8] = x1992
      wynik[i, 9] = y1992           
      i+=1
+print(wynik)
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Transform coordinates')
     parser.add_argument('-i', '--input', required=True, help='Input file path')
     parser.add_argument('-o', '--output', required=True, help='Output file path')
     parser.add_argument('-el', '--elipsoida', required=True,choices=['wgs84', 'grs80', 'Krasowski'], help='Typ elipsoidy')
-    parser.add_argument('-t', '--type', required=True, choices=['xyz_to_blh', 'blh_to_xyz', 'xyz_to_neup', 'bl_to_2000', 'bl_to_1992'], help='Transformation type')
+    parser.add_argument('-t', '--type', required=True, choices=['xyz_to_blh', 'flh2XYZ', 'xyz_to_neup', 'bl_to_2000', 'bl_to_1992'], help='Typ transformacji')
     parser.add_argument('-p', '--parameters', nargs='+', help='Transformation parameters')
 
     args = parser.parse_args()
-    
 
     elipsoidy = {'WGS84':[6378137.000, 0.00669438002290], 'GRS80':[6378137.000, 0.00669438002290], 'Krasowski':[6378245.000, 0.00669342162296]}
     p = Transformacje()
-
-
-np.savetxt('wsp_out.txt', wynik, delimiter = ',', fmt = ['%10.7f', '%10.7f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f'], 
-           header = 'Adam Stankiewicz i Wojciech Golba\n Wydział Geodezji i Kartografii\n Zamiana współrzędnych geodezyjnych')
-
-
 
 with open(args.input, 'r') as f_in:
     with open(args.output, 'w') as f_out:
         for line in f_in:
             line = line.strip()
-            if args.type == 'xyz_to_blh':
+            if args.type == 'blh_to_xyz':
                     x, y, z = line.split()
                     phi, lam, h = p.flh2XYZ(float(x), float(y), float(z))
                     f_out.write(f'{phi} {lam} {h}\n')
-            elif args.type == 'blh_to_xyz':
+            elif args.type == 'xyz_to_blh':
                     phi, lam, h = line.split()
                     x, y, z = p.xyz2flh(float(phi), float(lam), float(h))
                     f_out.write(f'{x} {y} {z}\n')
@@ -79,3 +84,7 @@ with open(args.input, 'r') as f_in:
                     f_out.write(f'{x} {y} {z}\n')
 
 
+
+
+np.savetxt('wsp_out.txt', wynik, delimiter = ',', fmt = ['%10.7f', '%10.7f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f','%10.3f'], 
+           header = 'Adam Stankiewicz i Wojciech Golba\n Wydział Geodezji i Kartografii\n Zamiana współrzędnych geodezyjnych')
