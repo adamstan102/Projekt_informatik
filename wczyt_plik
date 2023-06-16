@@ -54,34 +54,33 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     elipsoidy = {'WGS84':[6378137.000, 0.00669438002290], 'GRS80':[6378137.000, 0.00669438002290], 'Krasowski':[6378245.000, 0.00669342162296]}
-    p = Transformacje()
+    p = Transformacje(args.elipsoida)
 
-with open(args.input, 'r') as f_in:
-    with open(args.output, 'w') as f_out:
-        for line in f_in:
-            line = line.strip()
-            if args.type == 'blh_to_xyz':
-                    x, y, z = line.split()
-                    phi, lam, h = p.flh2XYZ(float(x), float(y), float(z))
-                    f_out.write(f'{phi} {lam} {h}\n')
-            elif args.type == 'xyz_to_blh':
-                    phi, lam, h = line.split()
-                    x, y, z = p.xyz2flh(float(phi), float(lam), float(h))
-                    f_out.write(f'{x} {y} {z}\n')
-            elif args.type == 'xyz_to_neup':
-                    x, y, z = line.split()
-                    phi0, lam0 = [float(p) for p in args.parameters]
-                    n, e, u = p.XYZ2neu(float(x), float(y), float(z))
-                    f_out.write(f'{n} {e} {u}\n')
-            elif args.type == 'bl_to_2000':
-                    phi, lam, h = line.split()
-                    x, y, z = p.fl2pl2000(float(phi), float(lam), float(h))
-                    f_out.write(f'{x} {y} {z}\n')
-            elif args.type == 'bl_to_1992':
-                    phi, lam, h = line.split()
-                    x, y, z = p.fl2pl1992(float(phi), float(lam), float(h))
-                    f_out.write(f'{x} {y} {z}\n')
-
+    with open(args.input, 'r') as f_in:
+        with open(args.output, 'w') as f_out:
+            for line in f_in:
+                line = line.strip()
+                if args.type == 'blh_to_xyz':
+                        x, y, z = line.split(',')
+                        phi, lam, h = p.flh2XYZ(float(x), float(y), float(z))
+                        f_out.write(f'{phi} {lam} {h}\n')
+                elif args.type == 'xyz_to_blh':
+                        phi, lam, h = line.split(',')
+                        x, y, z = p.xyz2flh(float(phi), float(lam), float(h))
+                        f_out.write(f'{x} {y} {z}\n')
+                elif args.type == 'xyz_to_neup':
+                        x, y, z = line.split(',')
+                        phi0, lam0 = [float(p) for p in args.parameters]
+                        n, e, u = p.XYZ2neu(float(x), float(y), float(z))
+                        f_out.write(f'{n} {e} {u}\n')
+                elif args.type == 'bl_to_2000':
+                        phi, lam, h = line.split(',')
+                        x, y, z = p.fl2pl2000(float(phi), float(lam), float(h))
+                        f_out.write(f'{x} {y} {z}\n')
+                elif args.type == 'bl_to_1992':
+                        phi, lam, h = line.split(',')
+                        x, y, z = p.fl2pl1992(float(phi), float(lam), float(h))
+                        f_out.write(f'{x} {y} {z}\n')
 
 
 
